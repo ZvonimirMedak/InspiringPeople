@@ -3,27 +3,43 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1748BEBE2615D5C00073AC02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BEBD2615D5C00073AC02 /* AppDelegate.swift */; };
-		1748BEC02615D5C00073AC02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BEBF2615D5C00073AC02 /* SceneDelegate.swift */; };
-		1748BEC22615D5C00073AC02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BEC12615D5C00073AC02 /* ViewController.swift */; };
-		1748BEC52615D5C00073AC02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1748BEC32615D5C00073AC02 /* Main.storyboard */; };
 		1748BEC72615D5C20073AC02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1748BEC62615D5C20073AC02 /* Assets.xcassets */; };
 		1748BECA2615D5C20073AC02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1748BEC82615D5C20073AC02 /* LaunchScreen.storyboard */; };
+		1748BED92615D6290073AC02 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BED82615D6290073AC02 /* LandingViewController.swift */; };
+		1748BEE42615D7CB0073AC02 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BEE32615D7CB0073AC02 /* UIView+Extension.swift */; };
+		1748BEE92615D8830073AC02 /* InspiringPersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BEE82615D8830073AC02 /* InspiringPersonTableViewCell.swift */; };
+		1748BF282615DE970073AC02 /* InspiringPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF272615DE970073AC02 /* InspiringPerson.swift */; };
+		1748BF2D2615DF9F0073AC02 /* InspiringPeopleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF2C2615DF9F0073AC02 /* InspiringPeopleRepository.swift */; };
+		1748BF312615E14D0073AC02 /* LandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF302615E14D0073AC02 /* LandingViewModel.swift */; };
+		1748BF342615ED320073AC02 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF332615ED320073AC02 /* UIViewController+Extension.swift */; };
+		1748BF382615F08F0073AC02 /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF372615F08F0073AC02 /* AddPersonViewController.swift */; };
+		17769F282616518A00A665F7 /* AddPersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17769F272616518A00A665F7 /* AddPersonViewModel.swift */; };
+		461F2E871B5BEE3895E4E1DC /* Pods_InspiringPeople.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8705536E10A3A90765F4E180 /* Pods_InspiringPeople.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1748BEBA2615D5C00073AC02 /* InspiringPeople.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InspiringPeople.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1748BEBD2615D5C00073AC02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1748BEBF2615D5C00073AC02 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1748BEC12615D5C00073AC02 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1748BEC42615D5C00073AC02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1748BEC62615D5C20073AC02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1748BEC92615D5C20073AC02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1748BECB2615D5C20073AC02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1748BED82615D6290073AC02 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		1748BEE32615D7CB0073AC02 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		1748BEE82615D8830073AC02 /* InspiringPersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspiringPersonTableViewCell.swift; sourceTree = "<group>"; };
+		1748BF272615DE970073AC02 /* InspiringPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspiringPerson.swift; sourceTree = "<group>"; };
+		1748BF2C2615DF9F0073AC02 /* InspiringPeopleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspiringPeopleRepository.swift; sourceTree = "<group>"; };
+		1748BF302615E14D0073AC02 /* LandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewModel.swift; sourceTree = "<group>"; };
+		1748BF332615ED320073AC02 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		1748BF372615F08F0073AC02 /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
+		17769F272616518A00A665F7 /* AddPersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewModel.swift; sourceTree = "<group>"; };
+		4C74BBA5266C4D04E2D82A26 /* Pods-InspiringPeople.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiringPeople.release.xcconfig"; path = "Target Support Files/Pods-InspiringPeople/Pods-InspiringPeople.release.xcconfig"; sourceTree = "<group>"; };
+		8705536E10A3A90765F4E180 /* Pods_InspiringPeople.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InspiringPeople.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E92C49B4C2283941E0D5EF88 /* Pods-InspiringPeople.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiringPeople.debug.xcconfig"; path = "Target Support Files/Pods-InspiringPeople/Pods-InspiringPeople.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				461F2E871B5BEE3895E4E1DC /* Pods_InspiringPeople.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +59,8 @@
 			children = (
 				1748BEBC2615D5C00073AC02 /* InspiringPeople */,
 				1748BEBB2615D5C00073AC02 /* Products */,
+				74B6326834DF44AE0347BC08 /* Pods */,
+				7C5CCA904FA2108AE3ECAE21 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +75,110 @@
 		1748BEBC2615D5C00073AC02 /* InspiringPeople */ = {
 			isa = PBXGroup;
 			children = (
+				1748BF362615F0820073AC02 /* AddPerson */,
+				1748BF2B2615DF2D0073AC02 /* Repository */,
+				1748BF262615DE8F0073AC02 /* Model */,
+				1748BEE22615D7C10073AC02 /* Extensions */,
+				1748BED52615D5F40073AC02 /* Landing */,
 				1748BEBD2615D5C00073AC02 /* AppDelegate.swift */,
-				1748BEBF2615D5C00073AC02 /* SceneDelegate.swift */,
-				1748BEC12615D5C00073AC02 /* ViewController.swift */,
-				1748BEC32615D5C00073AC02 /* Main.storyboard */,
 				1748BEC62615D5C20073AC02 /* Assets.xcassets */,
 				1748BEC82615D5C20073AC02 /* LaunchScreen.storyboard */,
 				1748BECB2615D5C20073AC02 /* Info.plist */,
 			);
 			path = InspiringPeople;
+			sourceTree = "<group>";
+		};
+		1748BED52615D5F40073AC02 /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				1748BED72615D61E0073AC02 /* ViewModel */,
+				1748BED62615D6190073AC02 /* UI */,
+			);
+			path = Landing;
+			sourceTree = "<group>";
+		};
+		1748BED62615D6190073AC02 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1748BED82615D6290073AC02 /* LandingViewController.swift */,
+				1748BEE82615D8830073AC02 /* InspiringPersonTableViewCell.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		1748BED72615D61E0073AC02 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1748BF302615E14D0073AC02 /* LandingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1748BEE22615D7C10073AC02 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1748BEE32615D7CB0073AC02 /* UIView+Extension.swift */,
+				1748BF332615ED320073AC02 /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1748BF262615DE8F0073AC02 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1748BF272615DE970073AC02 /* InspiringPerson.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1748BF2B2615DF2D0073AC02 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				1748BF2C2615DF9F0073AC02 /* InspiringPeopleRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		1748BF362615F0820073AC02 /* AddPerson */ = {
+			isa = PBXGroup;
+			children = (
+				17769F2526164EE700A665F7 /* ViewModel */,
+				1748BF3A2615F0920073AC02 /* UI */,
+			);
+			path = AddPerson;
+			sourceTree = "<group>";
+		};
+		1748BF3A2615F0920073AC02 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1748BF372615F08F0073AC02 /* AddPersonViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		17769F2526164EE700A665F7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				17769F272616518A00A665F7 /* AddPersonViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		74B6326834DF44AE0347BC08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E92C49B4C2283941E0D5EF88 /* Pods-InspiringPeople.debug.xcconfig */,
+				4C74BBA5266C4D04E2D82A26 /* Pods-InspiringPeople.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7C5CCA904FA2108AE3ECAE21 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8705536E10A3A90765F4E180 /* Pods_InspiringPeople.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +188,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1748BECE2615D5C20073AC02 /* Build configuration list for PBXNativeTarget "InspiringPeople" */;
 			buildPhases = (
+				0ACB6E3E48321688A9E02079 /* [CP] Check Pods Manifest.lock */,
 				1748BEB62615D5C00073AC02 /* Sources */,
 				1748BEB72615D5C00073AC02 /* Frameworks */,
 				1748BEB82615D5C00073AC02 /* Resources */,
+				57930470E9DDA6AD5330BDC6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,34 +242,74 @@
 			files = (
 				1748BECA2615D5C20073AC02 /* LaunchScreen.storyboard in Resources */,
 				1748BEC72615D5C20073AC02 /* Assets.xcassets in Resources */,
-				1748BEC52615D5C00073AC02 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0ACB6E3E48321688A9E02079 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-InspiringPeople-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57930470E9DDA6AD5330BDC6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InspiringPeople/Pods-InspiringPeople-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InspiringPeople/Pods-InspiringPeople-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InspiringPeople/Pods-InspiringPeople-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1748BEB62615D5C00073AC02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1748BEC22615D5C00073AC02 /* ViewController.swift in Sources */,
+				1748BF342615ED320073AC02 /* UIViewController+Extension.swift in Sources */,
+				1748BF2D2615DF9F0073AC02 /* InspiringPeopleRepository.swift in Sources */,
+				1748BF382615F08F0073AC02 /* AddPersonViewController.swift in Sources */,
+				1748BF282615DE970073AC02 /* InspiringPerson.swift in Sources */,
+				1748BEE42615D7CB0073AC02 /* UIView+Extension.swift in Sources */,
+				1748BED92615D6290073AC02 /* LandingViewController.swift in Sources */,
+				1748BEE92615D8830073AC02 /* InspiringPersonTableViewCell.swift in Sources */,
+				17769F282616518A00A665F7 /* AddPersonViewModel.swift in Sources */,
+				1748BF312615E14D0073AC02 /* LandingViewModel.swift in Sources */,
 				1748BEBE2615D5C00073AC02 /* AppDelegate.swift in Sources */,
-				1748BEC02615D5C00073AC02 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1748BEC32615D5C00073AC02 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1748BEC42615D5C00073AC02 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1748BEC82615D5C20073AC02 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -283,6 +439,7 @@
 		};
 		1748BECF2615D5C20073AC02 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E92C49B4C2283941E0D5EF88 /* Pods-InspiringPeople.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -301,6 +458,7 @@
 		};
 		1748BED02615D5C20073AC02 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C74BBA5266C4D04E2D82A26 /* Pods-InspiringPeople.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

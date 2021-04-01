@@ -13,11 +13,11 @@ import UIKit
 
 public class AddPersonViewController: UIViewController {
     
-    
     private let personImageView: UIImageView = {
-        let iv = UIImageView()
+        let iv = UIImageView(image: UIImage(named: "placeholder"))
         iv.layer.cornerRadius = 5
         iv.layer.masksToBounds = true
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     
@@ -57,46 +57,175 @@ public class AddPersonViewController: UIViewController {
         return field
     }()
     
+    private let submitButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("SUBMIT", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 5
+        return button
+    }()
+    
+    let disposeBag = DisposeBag()
+    let tapGesture = UITapGestureRecognizer()
+    let viewModel: AddPersonViewModel
+    
+    public init(viewModel: AddPersonViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
+        setupInteraction()
+        initializeVM()
     }
 }
 
 private extension AddPersonViewController {
     
     func setupUI() {
-        view.addSubviews(personImageView, birthTextField, deathTextField, descriptionTextField, quotesTextField)
+        view.addSubviews(personImageView, birthTextField, deathTextField, descriptionTextField, quotesTextField, submitButton)
         setupConstraints()
+        personImageView.addGestureRecognizer(tapGesture)
     }
     
     func setupConstraints() {
         personImageView.snp.makeConstraints { (make) in
             make.leading.top.equalToSuperview().inset(10)
-            make.height.width.equalTo(50)
+            make.height.width.equalTo(90)
         }
         
         birthTextField.snp.makeConstraints { (make) in
             make.leading.equalTo(personImageView.snp.trailing).inset(-10)
             make.top.equalTo(personImageView).inset(5)
             make.trailing.equalToSuperview().inset(10)
+            make.height.equalTo(40)
         }
         
         deathTextField.snp.makeConstraints { (make) in
             make.leading.equalTo(personImageView.snp.trailing).inset(-10)
             make.top.equalTo(birthTextField.snp.bottom).inset(-10)
             make.trailing.equalToSuperview().inset(10)
+            make.height.equalTo(40)
         }
         
         descriptionTextField.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview().inset(10)
             make.top.equalTo(personImageView.snp.bottom).inset(-10)
+            make.height.equalTo(40)
         }
         
         quotesTextField.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview().inset(10)
             make.top.equalTo(descriptionTextField.snp.bottom).inset(-10)
+            make.height.equalTo(40)
         }
+        
+        submitButton.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(quotesTextField.snp.bottom).inset(-10)
+            make.height.equalTo(40)
+            make.width.equalTo(100)
+        }
+    }
+    
+    func setupInteraction() {
+        tapGesture.rx.event
+            .observe(on: MainScheduler.instance)
+            .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
+            .subscribe(onNext: { [unowned self] (_) in
+                openImagePicker()
+            })
+            .disposed(by: disposeBag)
+        
+        quotesTextField.rx
+            .text
+            .changed
+            .observe(on: MainScheduler.instance)
+            .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
+            .subscribe(onNext: { [unowned self] (text) in
+                viewModel.userInteractionSubject.onNext(.quotes(quotes: text ?? ""))
+            })
+            .disposed(by: disposeBag)
+        
+        birthTextField.rx
+            .text
+            .changed
+            .observe(on: MainScheduler.instance)
+            .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
+            .subscribe(onNext: { [unowned self] (text) in
+                viewModel.userInteractionSubject.onNext(.birth(birth: text ?? ""))
+            })
+            .disposed(by: disposeBag)
+        
+        deathTextField.rx
+            .text
+            .changed
+            .observe(on: MainScheduler.instance)
+            .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
+            .subscribe(onNext: { [unowned self] (text) in
+                viewModel.userInteractionSubject.onNext(.death(death: text ?? ""))
+            })
+            .disposed(by: disposeBag)
+        
+        descriptionTextField.rx
+            .text
+            .changed
+            .observe(on: MainScheduler.instance)
+            .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
+            .subscribe(onNext: { [unowned self] (text) in
+                viewModel.userInteractionSubject.onNext(.description(description: text ?? ""))
+            })
+            .disposed(by: disposeBag)
+        
+        submitButton.rx
+            .tap
+            .observe(on: MainScheduler.instance)
+            .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
+            .subscribe(onNext: { [unowned self] (_) in
+                viewModel.userInteractionSubject.onNext(.submit)
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+private extension AddPersonViewController {
+    func initializeVM() {
+        disposeBag.insert(viewModel.initializeVM())
+        initializeAlertSubject(for: viewModel.showAlertSubject).disposed(by: disposeBag)
+    }
+    
+    func initializeAlertSubject(for subject: PublishSubject<()>) -> Disposable {
+        return subject
+            .observe(on: MainScheduler.instance)
+            .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
+            .subscribe(onNext: { [unowned self] in
+                showAlert(message: "All fields are required")
+            })
+    }
+}
+
+extension AddPersonViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func openImagePicker() {
+        let imagePickerVC = UIImagePickerController()
+        imagePickerVC.delegate = self
+        present(imagePickerVC, animated: true, completion: nil)
+    }
+    
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let imagePicked = info[.originalImage] as? UIImage else {return}
+        personImageView.image = imagePicked
+        viewModel.userInteractionSubject.onNext(.image(image: imagePicked))
+        dismiss(animated: true, completion: nil)
     }
 }
