@@ -54,6 +54,11 @@ class InspiringPersonTableViewCell: UITableViewCell {
         birthLabel.text?.append(" " + (inspiringPerson.birth ?? ""))
         deathLabel.text?.append(" " + (inspiringPerson.death ?? ""))
     }
+    
+    override func prepareForReuse() {
+        birthLabel.text = "Birth:"
+        deathLabel.text = "Died:"
+    }
 }
 
 private extension InspiringPersonTableViewCell {
