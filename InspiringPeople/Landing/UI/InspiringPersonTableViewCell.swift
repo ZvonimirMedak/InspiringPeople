@@ -39,6 +39,18 @@ class InspiringPersonTableViewCell: UITableViewCell {
         return label
     }()
     
+    public let editButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: "edit"), for: .normal)
+        return button
+    }()
+    
+    public let deleteButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "trash"), for: .normal)
+        return button
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -54,12 +66,17 @@ class InspiringPersonTableViewCell: UITableViewCell {
         birthLabel.text?.append(" " + (inspiringPerson.birth ?? ""))
         deathLabel.text?.append(" " + (inspiringPerson.death ?? ""))
     }
+    
+    override func prepareForReuse() {
+        birthLabel.text = "Birth:"
+        deathLabel.text = "Died:"
+    }
 }
 
 private extension InspiringPersonTableViewCell {
     
     func setupUI() {
-        contentView.addSubviews(personImageView, descriptionLabel, birthLabel, deathLabel)
+        contentView.addSubviews(personImageView, descriptionLabel, birthLabel, deathLabel, deleteButton, editButton)
         selectionStyle = .none
         setupConstraints()
     }
@@ -85,6 +102,18 @@ private extension InspiringPersonTableViewCell {
             make.leading.equalTo(personImageView.snp.trailing).inset(-10)
             make.top.equalTo(birthLabel.snp.bottom).inset(-10)
             make.trailing.equalToSuperview().inset(10)
+        }
+        
+        deleteButton.snp.makeConstraints { (make) in
+            make.trailing.equalToSuperview().inset(10)
+            make.width.height.equalTo(20)
+            make.top.equalTo(personImageView).inset(5)
+        }
+        
+        editButton.snp.makeConstraints { (make) in
+            make.trailing.equalTo(deleteButton.snp.leading).inset(-10)
+            make.width.height.equalTo(20)
+            make.top.equalTo(personImageView).inset(5)
         }
     }
 }

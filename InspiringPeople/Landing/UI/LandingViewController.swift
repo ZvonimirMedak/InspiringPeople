@@ -21,11 +21,6 @@ class LandingViewController: UIViewController{
         return tv
     }()
     
-    let addPersonBarButton: UIBarButtonItem = {
-        let barButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
-        return barButton
-    }()
-    
     let viewModel: LandingViewModel
     
     init(viewModel: LandingViewModel) {
@@ -39,9 +34,9 @@ class LandingViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setupUI()
         initializeVM()
-        initializeInteraction()
         viewModel.loadDataSubject.onNext(())
     }
 }
@@ -50,7 +45,6 @@ private extension LandingViewController {
     
     func setupUI() {
         view.addSubview(tableView)
-        navigationItem.rightBarButtonItem = addPersonBarButton
         setupConstraints()
         setupTableView()
     }
@@ -93,20 +87,6 @@ private extension LandingViewController {
                 showAlert(message: quote)
             })
     }
-    
-    func initializeInteraction() {
-        addPersonBarButton.rx
-            .tap
-            .observe(on: MainScheduler.instance)
-            .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
-            .subscribe(onNext: { [unowned self] in
-                let viewModel = AddPersonViewModel(inspiringPerson: InspiringPerson(image: nil, description: nil, birth: nil, death: nil, quotes: nil), userInteractionSubject: PublishSubject(), showAlertSubject: PublishSubject(), inspiringPersonRepository: self.viewModel.inspiringPeopleRepository)
-                viewModel.successDelegate = self
-                let addPersonVC = AddPersonViewController(viewModel: viewModel)
-                self.present(addPersonVC, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
-    }
 }
 
 extension LandingViewController: UITableViewDelegate, UITableViewDataSource {
@@ -118,17 +98,44 @@ extension LandingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "InspiringPersonTableViewCell", for: indexPath) as? InspiringPersonTableViewCell else {
             return UITableViewCell()
         }
-        let currentPerson = viewModel.inspiringPeopleRelay.value[indexPath.row]
-        cell.configureCell(inspiringPerson: currentPerson)
-        return cell
+        if  viewModel.inspiringPeopleRelay.value.count > indexPath.row {
+            let currentPerson = viewModel.inspiringPeopleRelay.value[indexPath.row]
+            cell.configureCell(inspiringPerson: currentPerson)
+            cell.deleteButton.rx.tap
+                .observe(on: MainScheduler.instance)
+                .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
+                .subscribe(onNext: { [unowned self] in
+                    viewModel.userInteractionSubject.onNext(.delete(index: indexPath.row))
+                })
+                .disposed(by: disposeBag)
+            
+            cell.editButton.rx.tap
+                .observe(on: MainScheduler.instance)
+                .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
+                .subscribe(onNext: { [unowned self] in
+                    presentEditingViewController(person: viewModel.inspiringPeopleRelay.value[indexPath.row], index: indexPath.row)
+                })
+                .disposed(by: disposeBag)
+            return cell
+        }
+        else {
+            return UITableViewCell()
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.userInteractionSubject.onNext(indexPath.row)
+        viewModel.userInteractionSubject.onNext(.quote(index: indexPath.row))
     }
 }
 
 extension LandingViewController: SuccessDelegate {
+    
+    func presentEditingViewController(person: InspiringPerson, index: Int) {
+        let addPersonViewController = AddPersonViewController(viewModel: AddPersonViewModel(inspiringPerson: person, userInteractionSubject: PublishSubject(), showAlertSubject: PublishSubject(), inspiringPersonRepository: viewModel.inspiringPeopleRepository, type: .edit(index: index)))
+        addPersonViewController.viewModel.successDelegate = self
+        present(addPersonViewController, animated: true, completion: nil)
+    }
     
     func sendSuccess() {
         dismiss(animated: true) { [unowned self] in

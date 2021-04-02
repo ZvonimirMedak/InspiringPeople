@@ -9,15 +9,20 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+public enum LandingUserInteractionType {
+    case quote(index: Int)
+    case delete(index: Int)
+}
+
 public class LandingViewModel {
     public let loadDataSubject: ReplaySubject<()>
     public let inspiringPeopleRelay: BehaviorRelay<[InspiringPerson]>
-    public let userInteractionSubject: PublishSubject<Int>
+    public let userInteractionSubject: PublishSubject<LandingUserInteractionType>
     public let showQuoteSubject: PublishSubject<String>
     public let inspiringPeopleRepository: InspiringPeopleRepository
     
     
-    public init(loadDataSubject: ReplaySubject<()>, inspiringPeopleRelay: BehaviorRelay<[InspiringPerson]>, inspiringPeopleRepository: InspiringPeopleRepository, userInteractionSubject: PublishSubject<Int>, showQuoteSubject: PublishSubject<String>) {
+    public init(loadDataSubject: ReplaySubject<()>, inspiringPeopleRelay: BehaviorRelay<[InspiringPerson]>, inspiringPeopleRepository: InspiringPeopleRepository, userInteractionSubject: PublishSubject<LandingUserInteractionType>, showQuoteSubject: PublishSubject<String>) {
         self.loadDataSubject = loadDataSubject
         self.inspiringPeopleRelay = inspiringPeopleRelay
         self.inspiringPeopleRepository = inspiringPeopleRepository
@@ -55,7 +60,7 @@ private extension LandingViewModel {
 
 private extension LandingViewModel {
     
-    func initializeUserInteractionObservable(for subject: PublishSubject<Int>) -> Disposable {
+    func initializeUserInteractionObservable(for subject: PublishSubject<LandingUserInteractionType>) -> Disposable {
         return subject
             .observe(on: MainScheduler.instance)
             .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
@@ -64,9 +69,16 @@ private extension LandingViewModel {
             })
     }
     
-    func handleUserInteraction(for row: Int) {
-        let currentPerson = inspiringPeopleRelay.value[row]
-        guard let quote = currentPerson.quotes?.randomElement() else {return}
-        showQuoteSubject.onNext(quote)
+    func handleUserInteraction(for type: LandingUserInteractionType) {
+        switch type {
+        case .quote(let index):
+            let currentPerson = inspiringPeopleRelay.value[index]
+            guard let quote = currentPerson.quotes?.randomElement() else {return}
+            showQuoteSubject.onNext(quote)
+        case .delete(let index):
+            inspiringPeopleRepository.deleteInspiringPerson(at: index)
+            loadDataSubject.onNext(())
+        }
+        
     }
 }

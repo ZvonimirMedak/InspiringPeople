@@ -18,6 +18,11 @@ public enum AddPersonUserInteractionType {
     case submit
 }
 
+public enum ModelType: Equatable {
+    case add
+    case edit(index: Int)
+}
+
 public protocol SuccessDelegate: class {
     func sendSuccess()
 }
@@ -29,12 +34,14 @@ public class AddPersonViewModel {
     public let userInteractionSubject: PublishSubject<AddPersonUserInteractionType>
     public let showAlertSubject: PublishSubject<()>
     private let inspiringPersonRepository: InspiringPeopleRepository
+    public let type: ModelType
     
-    public init(inspiringPerson: InspiringPerson, userInteractionSubject: PublishSubject<AddPersonUserInteractionType>, showAlertSubject: PublishSubject<()>, inspiringPersonRepository: InspiringPeopleRepository) {
+    public init(inspiringPerson: InspiringPerson, userInteractionSubject: PublishSubject<AddPersonUserInteractionType>, showAlertSubject: PublishSubject<()>, inspiringPersonRepository: InspiringPeopleRepository, type: ModelType) {
         self.inspiringPerson = inspiringPerson
         self.userInteractionSubject = userInteractionSubject
         self.showAlertSubject = showAlertSubject
         self.inspiringPersonRepository = inspiringPersonRepository
+        self.type = type
     }
     
     public func initializeVM() -> [Disposable] {
@@ -78,7 +85,13 @@ private extension AddPersonViewModel {
             showAlertSubject.onNext(())
             return
         }
-        inspiringPersonRepository.addInspiringPerson(person: InspiringPerson(image: safeImage, description: safeDescription, birth: safeBirth, death: safeDeath, quotes: safeQuotes))
+        let person = InspiringPerson(image: safeImage, description: safeDescription, birth: safeBirth, death: safeDeath, quotes: safeQuotes)
+        switch type {
+        case .add:
+            inspiringPersonRepository.addInspiringPerson(person: person)
+        case .edit(let index):
+            inspiringPersonRepository.editInspiringPerson(person: person, at: index)
+        }        
         successDelegate?.sendSuccess()
     }
     

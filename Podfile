@@ -9,5 +9,5 @@ target 'InspiringPeople' do
   pod 'SnapKit'
   pod 'RxSwift'
   pod 'RxCocoa'
-
+  pod 'Tabman'
 end

@@ -19,6 +19,7 @@
 		1748BF342615ED320073AC02 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF332615ED320073AC02 /* UIViewController+Extension.swift */; };
 		1748BF382615F08F0073AC02 /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF372615F08F0073AC02 /* AddPersonViewController.swift */; };
 		17769F282616518A00A665F7 /* AddPersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17769F272616518A00A665F7 /* AddPersonViewModel.swift */; };
+		17AEC00326177BEE00DAEE8C /* PagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AEC00226177BEE00DAEE8C /* PagerViewController.swift */; };
 		461F2E871B5BEE3895E4E1DC /* Pods_InspiringPeople.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8705536E10A3A90765F4E180 /* Pods_InspiringPeople.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		1748BF332615ED320073AC02 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		1748BF372615F08F0073AC02 /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
 		17769F272616518A00A665F7 /* AddPersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewModel.swift; sourceTree = "<group>"; };
+		17AEC00226177BEE00DAEE8C /* PagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerViewController.swift; sourceTree = "<group>"; };
 		4C74BBA5266C4D04E2D82A26 /* Pods-InspiringPeople.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiringPeople.release.xcconfig"; path = "Target Support Files/Pods-InspiringPeople/Pods-InspiringPeople.release.xcconfig"; sourceTree = "<group>"; };
 		8705536E10A3A90765F4E180 /* Pods_InspiringPeople.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InspiringPeople.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E92C49B4C2283941E0D5EF88 /* Pods-InspiringPeople.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiringPeople.debug.xcconfig"; path = "Target Support Files/Pods-InspiringPeople/Pods-InspiringPeople.debug.xcconfig"; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		1748BEBC2615D5C00073AC02 /* InspiringPeople */ = {
 			isa = PBXGroup;
 			children = (
+				17AEC00126177BE400DAEE8C /* Pager */,
 				1748BF362615F0820073AC02 /* AddPerson */,
 				1748BF2B2615DF2D0073AC02 /* Repository */,
 				1748BF262615DE8F0073AC02 /* Model */,
@@ -162,6 +165,14 @@
 				17769F272616518A00A665F7 /* AddPersonViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		17AEC00126177BE400DAEE8C /* Pager */ = {
+			isa = PBXGroup;
+			children = (
+				17AEC00226177BEE00DAEE8C /* PagerViewController.swift */,
+			);
+			path = Pager;
 			sourceTree = "<group>";
 		};
 		74B6326834DF44AE0347BC08 /* Pods */ = {
@@ -303,6 +314,7 @@
 				1748BEE92615D8830073AC02 /* InspiringPersonTableViewCell.swift in Sources */,
 				17769F282616518A00A665F7 /* AddPersonViewModel.swift in Sources */,
 				1748BF312615E14D0073AC02 /* LandingViewModel.swift in Sources */,
+				17AEC00326177BEE00DAEE8C /* PagerViewController.swift in Sources */,
 				1748BEBE2615D5C00073AC02 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

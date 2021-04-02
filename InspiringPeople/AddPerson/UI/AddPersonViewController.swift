@@ -94,13 +94,14 @@ private extension AddPersonViewController {
     
     func setupUI() {
         view.addSubviews(personImageView, birthTextField, deathTextField, descriptionTextField, quotesTextField, submitButton)
+        handleControllerType(for: viewModel.type)
         setupConstraints()
         personImageView.addGestureRecognizer(tapGesture)
     }
     
     func setupConstraints() {
         personImageView.snp.makeConstraints { (make) in
-            make.leading.top.equalToSuperview().inset(10)
+            make.leading.top.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.height.width.equalTo(90)
         }
         
@@ -195,6 +196,26 @@ private extension AddPersonViewController {
                 viewModel.userInteractionSubject.onNext(.submit)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func handleControllerType(for type: ModelType) {
+        switch type {
+        case .edit(index: _):
+            personImageView.image = viewModel.inspiringPerson.image
+            birthTextField.text = viewModel.inspiringPerson.birth
+            deathTextField.text = viewModel.inspiringPerson.death
+            descriptionTextField.text = viewModel.inspiringPerson.description
+            for quote in viewModel.inspiringPerson.quotes ?? [] {
+                if quote == viewModel.inspiringPerson.quotes?.last{
+                    quotesTextField.text?.append(" " + quote)
+                }
+                else {
+                    quotesTextField.text?.append(" " + quote + ";")
+                }
+            }
+        default:
+            break
+        }
     }
 }
 
