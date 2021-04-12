@@ -14,11 +14,12 @@
 		1748BEE42615D7CB0073AC02 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BEE32615D7CB0073AC02 /* UIView+Extension.swift */; };
 		1748BEE92615D8830073AC02 /* InspiringPersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BEE82615D8830073AC02 /* InspiringPersonTableViewCell.swift */; };
 		1748BF282615DE970073AC02 /* InspiringPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF272615DE970073AC02 /* InspiringPerson.swift */; };
-		1748BF2D2615DF9F0073AC02 /* InspiringPeopleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF2C2615DF9F0073AC02 /* InspiringPeopleRepository.swift */; };
 		1748BF312615E14D0073AC02 /* LandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF302615E14D0073AC02 /* LandingViewModel.swift */; };
 		1748BF342615ED320073AC02 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF332615ED320073AC02 /* UIViewController+Extension.swift */; };
 		1748BF382615F08F0073AC02 /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748BF372615F08F0073AC02 /* AddPersonViewController.swift */; };
 		17769F282616518A00A665F7 /* AddPersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17769F272616518A00A665F7 /* AddPersonViewModel.swift */; };
+		179EACD82623007500B6AB85 /* DatabseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179EACD72623007500B6AB85 /* DatabseRepository.swift */; };
+		179EACDC2623014000B6AB85 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179EACDB2623014000B6AB85 /* UserDefaults+Extension.swift */; };
 		17AEC00326177BEE00DAEE8C /* PagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AEC00226177BEE00DAEE8C /* PagerViewController.swift */; };
 		461F2E871B5BEE3895E4E1DC /* Pods_InspiringPeople.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8705536E10A3A90765F4E180 /* Pods_InspiringPeople.framework */; };
 /* End PBXBuildFile section */
@@ -33,11 +34,12 @@
 		1748BEE32615D7CB0073AC02 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1748BEE82615D8830073AC02 /* InspiringPersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspiringPersonTableViewCell.swift; sourceTree = "<group>"; };
 		1748BF272615DE970073AC02 /* InspiringPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspiringPerson.swift; sourceTree = "<group>"; };
-		1748BF2C2615DF9F0073AC02 /* InspiringPeopleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspiringPeopleRepository.swift; sourceTree = "<group>"; };
 		1748BF302615E14D0073AC02 /* LandingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewModel.swift; sourceTree = "<group>"; };
 		1748BF332615ED320073AC02 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		1748BF372615F08F0073AC02 /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
 		17769F272616518A00A665F7 /* AddPersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewModel.swift; sourceTree = "<group>"; };
+		179EACD72623007500B6AB85 /* DatabseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabseRepository.swift; sourceTree = "<group>"; };
+		179EACDB2623014000B6AB85 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		17AEC00226177BEE00DAEE8C /* PagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerViewController.swift; sourceTree = "<group>"; };
 		4C74BBA5266C4D04E2D82A26 /* Pods-InspiringPeople.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InspiringPeople.release.xcconfig"; path = "Target Support Files/Pods-InspiringPeople/Pods-InspiringPeople.release.xcconfig"; sourceTree = "<group>"; };
 		8705536E10A3A90765F4E180 /* Pods_InspiringPeople.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InspiringPeople.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 			children = (
 				1748BEE32615D7CB0073AC02 /* UIView+Extension.swift */,
 				1748BF332615ED320073AC02 /* UIViewController+Extension.swift */,
+				179EACDB2623014000B6AB85 /* UserDefaults+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -137,7 +140,7 @@
 		1748BF2B2615DF2D0073AC02 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				1748BF2C2615DF9F0073AC02 /* InspiringPeopleRepository.swift */,
+				179EACD72623007500B6AB85 /* DatabseRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -306,13 +309,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1748BF342615ED320073AC02 /* UIViewController+Extension.swift in Sources */,
-				1748BF2D2615DF9F0073AC02 /* InspiringPeopleRepository.swift in Sources */,
 				1748BF382615F08F0073AC02 /* AddPersonViewController.swift in Sources */,
 				1748BF282615DE970073AC02 /* InspiringPerson.swift in Sources */,
 				1748BEE42615D7CB0073AC02 /* UIView+Extension.swift in Sources */,
 				1748BED92615D6290073AC02 /* LandingViewController.swift in Sources */,
+				179EACD82623007500B6AB85 /* DatabseRepository.swift in Sources */,
 				1748BEE92615D8830073AC02 /* InspiringPersonTableViewCell.swift in Sources */,
 				17769F282616518A00A665F7 /* AddPersonViewModel.swift in Sources */,
+				179EACDC2623014000B6AB85 /* UserDefaults+Extension.swift in Sources */,
 				1748BF312615E14D0073AC02 /* LandingViewModel.swift in Sources */,
 				17AEC00326177BEE00DAEE8C /* PagerViewController.swift in Sources */,
 				1748BEBE2615D5C00073AC02 /* AppDelegate.swift in Sources */,

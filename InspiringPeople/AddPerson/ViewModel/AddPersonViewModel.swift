@@ -8,9 +8,8 @@
 import Foundation
 import RxSwift
 import RxCocoa
-
 public enum AddPersonUserInteractionType {
-    case image(image: UIImage)
+    case image(image: Data)
     case birth(birth: String)
     case death(death: String)
     case description(description: String)
@@ -33,15 +32,15 @@ public class AddPersonViewModel {
     public var inspiringPerson: InspiringPerson
     public let userInteractionSubject: PublishSubject<AddPersonUserInteractionType>
     public let showAlertSubject: PublishSubject<()>
-    private let inspiringPersonRepository: InspiringPeopleRepository
+    private let databaseManager: DatabaseRepository
     public let type: ModelType
     
-    public init(inspiringPerson: InspiringPerson, userInteractionSubject: PublishSubject<AddPersonUserInteractionType>, showAlertSubject: PublishSubject<()>, inspiringPersonRepository: InspiringPeopleRepository, type: ModelType) {
+    public init(inspiringPerson: InspiringPerson, userInteractionSubject: PublishSubject<AddPersonUserInteractionType>, showAlertSubject: PublishSubject<()>, type: ModelType, databaseManager: DatabaseRepository) {
         self.inspiringPerson = inspiringPerson
         self.userInteractionSubject = userInteractionSubject
         self.showAlertSubject = showAlertSubject
-        self.inspiringPersonRepository = inspiringPersonRepository
         self.type = type
+        self.databaseManager = databaseManager
     }
     
     public func initializeVM() -> [Disposable] {
@@ -69,7 +68,7 @@ private extension AddPersonViewModel {
         case .death(let text):
             inspiringPerson.death = text
         case .description(let description):
-            inspiringPerson.description = description
+            inspiringPerson.personDescription = description
         case .image(let image):
             inspiringPerson.image = image
         case .quotes(let quotes):
@@ -80,17 +79,19 @@ private extension AddPersonViewModel {
     }
     
     func handlePersonSubmit() {
-        guard let safeBirth = inspiringPerson.birth, let safeDeath = inspiringPerson.death, let safeDescription = inspiringPerson.description,
-              let safeImage = inspiringPerson.image, let safeQuotes = inspiringPerson.quotes else {
+        guard let safeBirth = inspiringPerson.birth, let safeDeath = inspiringPerson.death, let safeDescription = inspiringPerson.personDescription,
+              let safeImage = inspiringPerson.image, !inspiringPerson.quotes.isEmpty else {
             showAlertSubject.onNext(())
             return
         }
-        let person = InspiringPerson(image: safeImage, description: safeDescription, birth: safeBirth, death: safeDeath, quotes: safeQuotes)
+        let person = InspiringPerson(image: safeImage, description: safeDescription, birth: safeBirth, death: safeDeath, quotes: inspiringPerson.quotes)
         switch type {
         case .add:
-            inspiringPersonRepository.addInspiringPerson(person: person)
+            databaseManager.personAdded(person: person)
         case .edit(let index):
-            inspiringPersonRepository.editInspiringPerson(person: person, at: index)
+        
+
+            databaseManager.personChanged(at: index, newPerson: person)
         }        
         successDelegate?.sendSuccess()
     }

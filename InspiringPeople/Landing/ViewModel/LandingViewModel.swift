@@ -19,15 +19,15 @@ public class LandingViewModel {
     public let inspiringPeopleRelay: BehaviorRelay<[InspiringPerson]>
     public let userInteractionSubject: PublishSubject<LandingUserInteractionType>
     public let showQuoteSubject: PublishSubject<String>
-    public let inspiringPeopleRepository: InspiringPeopleRepository
+    public let databaseManager: DatabaseRepository
     
     
-    public init(loadDataSubject: ReplaySubject<()>, inspiringPeopleRelay: BehaviorRelay<[InspiringPerson]>, inspiringPeopleRepository: InspiringPeopleRepository, userInteractionSubject: PublishSubject<LandingUserInteractionType>, showQuoteSubject: PublishSubject<String>) {
+    public init(loadDataSubject: ReplaySubject<()>, inspiringPeopleRelay: BehaviorRelay<[InspiringPerson]>, userInteractionSubject: PublishSubject<LandingUserInteractionType>, showQuoteSubject: PublishSubject<String>, databaseManager: DatabaseRepository) {
         self.loadDataSubject = loadDataSubject
         self.inspiringPeopleRelay = inspiringPeopleRelay
-        self.inspiringPeopleRepository = inspiringPeopleRepository
         self.userInteractionSubject = userInteractionSubject
         self.showQuoteSubject = showQuoteSubject
+        self.databaseManager = databaseManager
     }
     
     public func initializeObservables() -> [Disposable] {
@@ -54,7 +54,7 @@ private extension LandingViewModel {
     }
     
     func getScreenData() -> [InspiringPerson] {
-        return inspiringPeopleRepository.getInspiringPeople()
+        return databaseManager.getPeople()
     }
 }
 
@@ -72,11 +72,11 @@ private extension LandingViewModel {
     func handleUserInteraction(for type: LandingUserInteractionType) {
         switch type {
         case .quote(let index):
-            let currentPerson = inspiringPeopleRelay.value[index]
-            guard let quote = currentPerson.quotes?.randomElement() else {return}
+            let currentPerson = databaseManager.getPeople()[index]
+            guard let quote = currentPerson.quotes.randomElement() else {return}
             showQuoteSubject.onNext(quote)
         case .delete(let index):
-            inspiringPeopleRepository.deleteInspiringPerson(at: index)
+            databaseManager.personDeleted(index: index)
             loadDataSubject.onNext(())
         }
         

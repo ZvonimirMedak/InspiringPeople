@@ -201,12 +201,12 @@ private extension AddPersonViewController {
     func handleControllerType(for type: ModelType) {
         switch type {
         case .edit(index: _):
-            personImageView.image = viewModel.inspiringPerson.image
+            personImageView.image = viewModel.inspiringPerson.getImageFromData()
             birthTextField.text = viewModel.inspiringPerson.birth
             deathTextField.text = viewModel.inspiringPerson.death
-            descriptionTextField.text = viewModel.inspiringPerson.description
-            for quote in viewModel.inspiringPerson.quotes ?? [] {
-                if quote == viewModel.inspiringPerson.quotes?.last{
+            descriptionTextField.text = viewModel.inspiringPerson.personDescription
+            for quote in viewModel.inspiringPerson.quotes {
+                if quote == viewModel.inspiringPerson.quotes.last{
                     quotesTextField.text?.append(" " + quote)
                 }
                 else {
@@ -244,9 +244,25 @@ extension AddPersonViewController: UIImagePickerControllerDelegate, UINavigation
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let imagePicked = info[.originalImage] as? UIImage else {return}
+        guard let imagePicked = info[.originalImage] as? UIImage, let assetPath = info[.imageURL] as? NSURL else {return}
+        print(assetPath)
+        var data: Data
+        
+        if (assetPath.absoluteString?.hasSuffix("JPG"))! {
+            data = Data(imagePicked.jpegData(compressionQuality: 0.9)!)
+            }
+            else if (assetPath.absoluteString?.hasSuffix("PNG"))! {
+                data = Data(imagePicked.pngData()!)
+            }
+            else if (assetPath.absoluteString?.hasSuffix("GIF"))! {
+                    data = Data(imagePicked.jpegData(compressionQuality: 0.9)!)
+                
+            }
+            else {
+                    data = Data(imagePicked.jpegData(compressionQuality: 0.9)!)
+            }
         personImageView.image = imagePicked
-        viewModel.userInteractionSubject.onNext(.image(image: imagePicked))
+        viewModel.userInteractionSubject.onNext(.image(image: data))
         dismiss(animated: true, completion: nil)
     }
 }

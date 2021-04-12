@@ -132,7 +132,7 @@ extension LandingViewController: UITableViewDelegate, UITableViewDataSource {
 extension LandingViewController: SuccessDelegate {
     
     func presentEditingViewController(person: InspiringPerson, index: Int) {
-        let addPersonViewController = AddPersonViewController(viewModel: AddPersonViewModel(inspiringPerson: person, userInteractionSubject: PublishSubject(), showAlertSubject: PublishSubject(), inspiringPersonRepository: viewModel.inspiringPeopleRepository, type: .edit(index: index)))
+        let addPersonViewController = AddPersonViewController(viewModel: AddPersonViewModel(inspiringPerson: person, userInteractionSubject: PublishSubject(), showAlertSubject: PublishSubject(), type: .edit(index: index), databaseManager: viewModel.databaseManager))
         addPersonViewController.viewModel.successDelegate = self
         present(addPersonViewController, animated: true, completion: nil)
     }

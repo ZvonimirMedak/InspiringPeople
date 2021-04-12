@@ -61,8 +61,8 @@ class InspiringPersonTableViewCell: UITableViewCell {
     }
     
     func configureCell(inspiringPerson: InspiringPerson) {
-        personImageView.image = inspiringPerson.image
-        descriptionLabel.text = inspiringPerson.description
+        personImageView.image = inspiringPerson.getImageFromData()
+        descriptionLabel.text = inspiringPerson.personDescription
         birthLabel.text?.append(" " + (inspiringPerson.birth ?? ""))
         deathLabel.text?.append(" " + (inspiringPerson.death ?? ""))
     }
